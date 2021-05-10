@@ -5,15 +5,16 @@ body {
 }
 
 .Button {
-  border: 1px solid #521751;
+  border: 1px solid rgb(79, 165, 252);
   font: inherit;
+  margin: 5px 0;
   padding: 8px;
-  background-color: #521751;
+  background-color: rgb(79, 165, 252);
   color: white;
   cursor: pointer;
 }
 
 .Button:hover,
 .Button:active {
-  background-color: #fa923f;
+  background-color: dodgerblue;
 }
