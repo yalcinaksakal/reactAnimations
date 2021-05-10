@@ -41,13 +41,13 @@ class App extends Component {
           unmountOnExit
         >
           {state => {
-            const opacity = ["entering", "exited"].includes(state) ? 0 : 1;
+            const opacity = ["entering", "exiting"].includes(state) ? 0 : 1;
 
             return (
               <Fragment>
                 <p>
-                  {state}
-                  {opacity}
+                  {`state:${state}, opacity: 
+                  ${opacity}`}
                 </p>
                 <div
                   style={{
@@ -63,14 +63,8 @@ class App extends Component {
             );
           }}
         </Transition>
-        <Transition
-          in={this.state.modelIsOpen}
-          timeout={1000}
-          mountOnEnter
-          unmountOnExit
-        >
-          {state => <Modal show={state} closed={this.closeModal} />}
-        </Transition>
+
+        <Modal show={this.state.modelIsOpen} closed={this.closeModal} />
 
         {this.state.modelIsOpen && <Backdrop clicked={this.closeModal} show />}
         <button onClick={this.showModal} className="Button">
