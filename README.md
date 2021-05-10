@@ -1,4 +1,4 @@
 react animations
 
 react-transition-group
-<Transition/> component
+Transition component
