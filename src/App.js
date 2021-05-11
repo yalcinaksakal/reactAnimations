@@ -10,6 +10,7 @@ class App extends Component {
   state = {
     modelIsOpen: false,
     showBlock: false,
+    transitionEvent: null,
   };
   showModal = () => {
     this.setState({
@@ -39,6 +40,12 @@ class App extends Component {
           timeout={1000}
           mountOnEnter
           unmountOnExit
+          onEnter={() => this.setState({ transitionEvent: "onEnter" })}
+          onEntering={() => this.setState({ transitionEvent: "onEntering" })}
+          onEntered={() => this.setState({ transitionEvent: "onEntered" })}
+          onExit={() => this.setState({ transitionEvent: "onExit" })}
+          onExiting={() => this.setState({ transitionEvent: "onExiting" })}
+          onExited={() => this.setState({ transitionEvent: "onExited" })}
         >
           {state => {
             const opacity = ["entering", "exiting"].includes(state) ? 0 : 1;
@@ -49,6 +56,7 @@ class App extends Component {
                   {`state:${state}, opacity: 
                   ${opacity}`}
                 </p>
+                <p>{`Transition event:${this.state.transitionEvent}`}</p>
                 <div
                   style={{
                     background: "red",
@@ -65,8 +73,8 @@ class App extends Component {
         </Transition>
 
         <Modal show={this.state.modelIsOpen} closed={this.closeModal} />
+        <Backdrop clicked={this.closeModal} show={this.state.modelIsOpen} />
 
-        {this.state.modelIsOpen && <Backdrop clicked={this.closeModal} show />}
         <button onClick={this.showModal} className="Button">
           Open Modal
         </button>
