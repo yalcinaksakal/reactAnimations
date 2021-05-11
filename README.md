@@ -14,10 +14,21 @@ onExit
 onExiting
 onExited)
 
-CSSTransition component : implemented on Modal component
+CSSTransition component : implemented in Modal component(Modal.js)
 ClassNames will handle class changes automatically
 in CSS
 .ClasName-enter
 .ClasName-enter-active
 .ClasName-exit
 .ClasName-exit-active
+or in js
+classNames={{
+        enter: "",
+        enterActive: "ModalOpen",
+        exit: "",
+        exitActive: "ModalClosed",
+        // appear,
+        // appear1Active
+      }}
+
+TransitionGroup (List.js) automatically sets in property in Transition or CSSTransition componnent
