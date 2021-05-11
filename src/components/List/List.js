@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import "./List.css";
-
+let count = 3;
 class List extends Component {
   state = {
     items: [1, 2, 3],
@@ -10,16 +10,17 @@ class List extends Component {
 
   addItemHandler = () => {
     this.setState(prevState => {
+      count++;
       return {
-        items: prevState.items.concat(prevState.items.length + 1),
+        items: prevState.items.concat(count),
       };
     });
   };
 
-  removeItemHandler = selIndex => {
+  removeItemHandler = selItem => {
     this.setState(prevState => {
       return {
-        items: prevState.items.filter((item, index) => index !== selIndex),
+        items: prevState.items.filter(item => item !== selItem),
       };
     });
   };
@@ -35,10 +36,10 @@ class List extends Component {
       </li>
     ));
 
-    const listItemsTG = this.state.items.map((item, index) => (
-      <CSSTransition key={index} classNames="fade" timeout={400}>
-        <li className="ListItem" onClick={() => this.removeItemHandler(index)}>
-          {item}
+    const listItemsTG = this.state.items.map(item => (
+      <CSSTransition key={item} classNames="fade" timeout={1000}>
+        <li className="ListItem" onClick={() => this.removeItemHandler(item)}>
+          {`Item id: ${item}`}
         </li>
       </CSSTransition>
     ));
